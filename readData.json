@@ -1,0 +1,19 @@
+{
+	"smith": {
+		"homeNumber": 5555,
+		"zipCode": 16786,
+		"street": "31st st",
+		"town": "rochester",
+		"country": "uk",
+		"cars": ["teslaT1", "teslaT2", "teslaT3"]
+	},
+	"john": {
+		"homeNumber": 8888,
+		"zipCode": 84604,
+		"street": "5th ave",
+		"town": "havent",
+		"country": "gb",
+		"cars": ["honda", "volvo", "bmw"]
+	}
+}
+
