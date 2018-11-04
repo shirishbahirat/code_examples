@@ -1,5 +1,6 @@
 #include <iostream>
 
+
 using namespace std;
 
 const uint32_t p1 = 1301081;
