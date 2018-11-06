@@ -138,6 +138,85 @@ void mirror_tree(b_tree* root)
 	root->left = tmp;
 }
 
+b_tree *get_node(b_tree *node, uint32_t data)
+{
+	if(node == NULL) return node;
+
+	if(data < node->data) 
+		return get_node(node->left,data);
+	else if( data > node->data)
+		return get_node(node->right, data);
+	else
+		return node;
+}
+
+uint32_t tree_max(b_tree *node)
+{
+	while(node->right) {
+		node = node->right;
+	}
+	return node->data;
+}
+
+uint32_t predecessor_in_order(b_tree *node)
+{
+	if(node->left) 
+		return tree_max(node->left);
+
+	b_tree *y = node->parent;
+	while(node == y->left) {
+		node = y;
+		y = y->parent;
+	}
+
+	return y->data;
+}
+
+void delete_node(b_tree *root, uint32_t data)
+{
+
+	b_tree *node, *p, *child, *pred;
+
+	node = get_node(root, data);
+
+	if(node->left == NULL && node->right == NULL) {
+		if(node->parent) p = node->parent;
+		if(node == p->left) 
+			p->left = NULL;
+		else
+			p->right = NULL;
+		delete node;
+		return;
+	}
+
+	if(node->left && node->right) {
+		uint32_t ch_pred = predecessor_in_order(node);
+		pred = get_node(root, ch_pred);
+		if(pred->parent->left == pred) 
+			pred->parent->left = NULL;
+		else if(pred->parent->right == pred) 
+			pred->parent->right = NULL;
+		node->data = pred->data;
+		delete pred;
+		return;
+	}
+
+	if(node->left) 
+		child = node->left;
+	else if(node->right)
+		child = node->right;
+	p = node->parent;
+	if(p->left && p->left == node) {
+		p->left = child;
+	}
+	else if (p->right && p->right == node) {
+		p->right = child;
+	}
+	child->parent = p;
+	delete node;
+
+}
+
 
 int main(int argc, const char* argv[])
 {
@@ -171,6 +250,11 @@ int main(int argc, const char* argv[])
 	mirror_tree(root);
 	cout << "forward_oder_print" << endl;
 	forward_oder_print(root);
+
+	cout << "delete_node" << endl;
+	delete_node(root, 1);
+	forward_oder_print(root);
+
 
 	delete_tree(root);
 
