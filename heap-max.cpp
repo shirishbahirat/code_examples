@@ -30,6 +30,23 @@ public:
     trickle_up(parent);
   }
 
+  virtual void trickel_down(uint32_t position, uint32_t limit) {
+    uint32_t parent = position;
+    uint32_t left = 2 * position + 1;
+    uint32_t right = 2 * position + 2;
+
+    if ((left < limit) && (arr[left] > arr[parent]))
+      parent = left;
+
+    if ((right < limit) && (arr[right] > arr[parent]))
+      parent = right;
+
+    if (parent != position) {
+      swap(arr[position], arr[parent]);
+      trickel_down(parent, limit);
+    }
+  }
+
   virtual void add(uint32_t element) {
     if (current_position < max_position)
       arr[current_position] = element;
@@ -45,7 +62,7 @@ public:
     cout << endl;
   }
 
-  virtual void heap_sort() {
+  virtual void heap_sort_up() {
     uint32_t index = current_position - 1;
 
     for (uint32_t i = 0; i < current_position; ++i) {
@@ -54,6 +71,17 @@ public:
     }
 
     swap(arr[index - 1], arr[index]);
+  }
+
+  virtual void heap_sort_down() {
+
+    uint32_t index = current_position - 1;
+
+    for (uint32_t i = 0; i < current_position; ++i) {
+      swap(arr[0], arr[index]);
+      trickel_down(0, index);
+      index--;
+    }
   }
 
 private:
@@ -74,7 +102,11 @@ int main(int argc, const char *argv[]) {
 
   heap->print_heap();
 
-  heap->heap_sort();
+  // heap->heap_sort_up();
+
+  // heap->print_heap();
+
+  heap->heap_sort_down();
 
   heap->print_heap();
 
