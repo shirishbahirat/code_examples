@@ -24,19 +24,19 @@ void quick_sort(int arr[], int lo, int hi) {
     return;
 
   int pvt = hi;
-  int idx = lo;
   int anc = lo;
 
   for (int i = lo; i < hi; ++i) {
-    if (arr[idx] < arr[pvt]) {
-      swap(arr, idx, anc);
+    if (arr[i] < arr[pvt]) {
+      swap(arr, i, anc);
       ++anc;
     }
-    ++idx;
   }
   swap(arr, anc, pvt);
-  quick_sort(arr, lo, anc - 1);
-  quick_sort(arr, anc + 1, hi);
+  if (anc > 0)
+    quick_sort(arr, lo, anc - 1);
+  if (anc < hi)
+    quick_sort(arr, anc + 1, hi);
 }
 
 int main(int argc, const char *argv[]) {
