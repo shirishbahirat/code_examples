@@ -23,6 +23,7 @@ vector<int> two_sum(vector<int> &numbers, int target) {
       return result;
     }
   }
+
   return result;
 }
 

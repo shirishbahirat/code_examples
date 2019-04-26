@@ -1,9 +1,15 @@
 #include <algorithm>
+#include <iostream>
 #include <locale>
 
-class Solution {
+using namespace std;
+
+class change_case {
 public:
-  string toLowerCase(string str) {
+  change_case() {}
+  ~change_case() {}
+
+  string to_lower_case(string str) {
 
     if (str.length() == 0)
       return str;
@@ -15,3 +21,11 @@ public:
     return str;
   }
 };
+
+int main(int argc, char const *argv[]) {
+  change_case *cgc = new change_case();
+
+  cout << cgc->to_lower_case("ShIrIsh") << endl;
+
+  return 0;
+}
