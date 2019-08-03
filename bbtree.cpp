@@ -56,6 +56,14 @@ void insert(node *&root, int key) {
   }
 }
 
+void delete_tree(node *root) {
+  if (root != NULL) {
+    delete_tree(root->left);
+    delete_tree(root->right);
+    delete root;
+  }
+}
+
 int main(int argc, char const *argv[]) {
   node *root = nullptr;
   vector<int> values = {8, 3, 10, 1, 6, 14, 4, 7, 13};
@@ -71,6 +79,8 @@ int main(int argc, char const *argv[]) {
 
   inorder_print(root);
   cout << endl;
+
+  delete_tree(root);
 
   return 0;
 }
