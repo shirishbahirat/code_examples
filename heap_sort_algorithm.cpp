@@ -35,9 +35,26 @@ void heapify(int arr[], int index, int len) {
   }
 }
 
+void heap_sort(int arr[], int len) {
+
+  for (int i = (len - 1) / 2; i >= 0; --i) {
+    heapify(arr, i, len);
+  }
+
+  for (int i = len - 1; i > 0; --i) {
+    swap(arr, 0, i);
+    heapify(arr, 0, i);
+  }
+}
+
 int main(const int argc, const char *argv[]) {
 
   int arr[] = {9, 8, 6, 11, 2, 5, 7};
+  int len = sizeof(arr) / sizeof(arr[0]);
+
+  print_array(arr, len);
+  heap_sort(arr, len);
+  print_array(arr, len);
 
   return 0;
 }
