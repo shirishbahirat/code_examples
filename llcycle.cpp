@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 
 using namespace std;
 
@@ -17,6 +18,9 @@ void append(ListNode **head, int val) {
   }
 
   ListNode *pnode = (*head);
+
+  int count = 0;
+  map<int, int> nodes;
 
   while ((*head)->next) {
     (*head) = (*head)->next;
@@ -43,12 +47,25 @@ class Solution {
 public:
   bool hasCycle(ListNode *head) {
 
+    map<ListNode *, int> nodes;
+    map<ListNode *, int>::iterator it;
+    int count = 0;
+
     while (head) {
-      cout << head->val << " ";
+
+      it = nodes.find(head);
+
+      if (it == nodes.end()) {
+        nodes[head] = count;
+        count++;
+      } else {
+        return false;
+      }
+
       head = head->next;
     }
 
-    return true;
+    return false;
   }
 };
 
