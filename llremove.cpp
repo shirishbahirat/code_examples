@@ -45,31 +45,37 @@ public:
   ListNode *removeElements(ListNode *head, int val) {
 
     ListNode *new_head = nullptr;
+    ListNode *aux = nullptr;
 
     if (head == nullptr)
       return head;
 
-    if (head->val == val) {
+    new_head = head;
+
+    while (head->val == val) {
       if (head->next) {
-        head = head->next;
+        aux = head->next;
+        delete head;
+        head = aux;
+        new_head = head;
       } else {
         return nullptr;
       }
-      new_head = head->next;
-    } else {
-      new_head = head;
     }
 
     while (head->next) {
       if (head->next->val == val) {
         if (head->next) {
+          aux = head->next->next;
+          delete head->next;
           head->next = head->next->next;
         } else {
           head->next = nullptr;
           break;
         }
+      } else {
+        head = head->next;
       }
-      head = head->next;
     }
 
     return new_head;
