@@ -23,7 +23,7 @@ uint32_t partation(uint32_t arr[], uint32_t low, uint32_t high) {
   uint32_t index = low;
 
   for (uint32_t j = low; j < high; ++j) {
-    if (arr[j] < pivot) {
+    if (arr[j] <= pivot) {
       swap(arr, index, j);
       ++index;
     }
@@ -48,7 +48,7 @@ void quick_sort(uint32_t arr[], uint32_t low, uint32_t high) {
 }
 
 int main(int argc, const char *argv[]) {
-  uint32_t arr[] = {10, 3, 4, 5, 6, 11, 8, 12, 1, 7};
+  uint32_t arr[] = {10, 3, 4, 3, 5, 6, 11, 8, 12, 1, 7};
   quick_sort(arr, 0, (sizeof(arr) / sizeof(uint32_t)) - 1);
   print_array(arr, (sizeof(arr) / sizeof(uint32_t)));
   return 0;
