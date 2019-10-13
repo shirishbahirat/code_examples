@@ -81,7 +81,42 @@ void print_node(Node *head) {
 
 class Solution {
 public:
-  Node *copyRandomList(Node *head) { return head; }
+  Node *copyRandomList(Node *head) {
+
+    Node *new_node = nullptr;
+    Node *phead = head;
+
+    while (head) {
+      new_node = new Node(head->val, head->next, nullptr);
+      head->next = new_node;
+      head = head->next->next;
+    }
+
+    head = phead;
+
+    while (head) {
+      head->next->random = head->random;
+      head = head->next->next;
+    }
+
+    head = phead;
+
+    Node *prev_node = nullptr;
+    Node *new_head = phead->next;
+
+    prev_node = head;
+    head = head->next;
+    delete prev_node;
+
+    while (head->next) {
+      prev_node = head->next;
+      head->next = prev_node->next;
+      delete prev_node;
+      head = head->next;
+    }
+
+    return new_head;
+  }
 };
 
 int main(int argc, char const *argv[]) {
