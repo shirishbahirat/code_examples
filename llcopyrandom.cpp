@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 #include <vector>
 
 using namespace std;
@@ -84,36 +85,46 @@ public:
   Node *copyRandomList(Node *head) {
 
     Node *new_node = nullptr;
-    Node *phead = head;
-
-    while (head) {
-      new_node = new Node(head->val, head->next, nullptr);
-      head->next = new_node;
-      head = head->next->next;
-    }
-
-    head = phead;
-
-    while (head) {
-      head->next->random = head->random;
-      head = head->next->next;
-    }
-
-    head = phead;
-
     Node *prev_node = nullptr;
-    Node *new_head = phead->next;
+    Node *phead = head;
+    Node *prev_head = head;
+    Node *new_head = nullptr;
+    Node *nhead = nullptr;
 
-    prev_node = head;
-    head = head->next;
-    delete prev_node;
+    map<Node *, Node *> node_map;
 
-    while (head->next) {
-      prev_node = head->next;
-      head->next = prev_node->next;
-      delete prev_node;
-      head = head->next;
+    while (head) {
+
+      new_node = new Node(head->val, nullptr, nullptr);
+
+      if (new_head == nullptr) {
+        new_head = new_node;
+        nhead = new_head;
+      }
+
+      if (prev_node)
+        prev_node->next = new_node;
+
+      prev_node = new_node;
+      prev_head = head->next;
+      node_map[head] = head->next;
+      head->next = new_node;
+
+      head = prev_head;
     }
+
+    head = phead;
+
+    while (new_head) {
+
+      new_head->random = head->random->next;
+
+      head = node_map[head];
+
+      new_head = new_head->next;
+    }
+
+    new_head = nhead;
 
     return new_head;
   }
