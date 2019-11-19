@@ -16,16 +16,9 @@ public:
     if (nums.empty())
       return 0;
 
-    if ((nums.size() == 1) && (val == nums[0])) {
-      nums = {};
+    if (nums.size() == 1) {
       return 0;
     }
-
-    if ((nums.size() == 1) && (val != nums[0])) {
-      cout << nums.size() << " " << nums[0] << endl;
-      return 0;
-    }
-
     vector<int>::iterator it = nums.end();
     vector<int>::iterator is = nums.begin();
     --it;
@@ -70,7 +63,14 @@ int main(int argc, char const *argv[]) {
   // vector<int> nums{0, 1, 2, 2, 3, 0, 4, 2};
   vector<int> nums{3};
 
-  sln->removeElement(nums, 2);
+  int val = sln->removeElement(nums, 3);
+
+  cout << val << endl;
+
+  for (vector<int>::iterator it = nums.begin(); it != nums.end(); ++it) {
+    cout << *it << " ";
+  }
+  cout << endl;
 
   return 0;
 }
