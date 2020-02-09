@@ -6,16 +6,13 @@ void merge(int data[], int low, int mid, int high) {
 
   int i = low;
   int j = mid + 1;
-  int k = 0;
-  int as = mid - low + 1;
+  int as = low - mid + 1;
   int bs = high - mid;
-  int len = as + bs;
-
-  cout << "merge " << len << endl;
+  int len = al + bl;
 
   int temp[len];
 
-  while ((i <= mid) && (j <= high)) {
+  while ((i < (mid + 1)) && (j < high)) {
     if (data[i] < data[j]) {
       temp[k++] = data[i++];
     } else {
@@ -23,22 +20,13 @@ void merge(int data[], int low, int mid, int high) {
     }
   }
 
-  cout << k << " " << j << " " << low << " " << high << endl;
-
-  for (; i <= mid;) {
-    temp[k++] = data[i++];
+  for (; j < bs;) {
+    c[k++] = b[j++];
   }
 
-  for (; j <= high;) {
-    temp[k++] = data[j++];
+  for (; i < as;) {
+    c[k++] = a[i++];
   }
-
-  cout << "mdone ";
-  for (int x = low, y = 0; y < len; ++x, ++y) {
-    data[x] = temp[y];
-    cout << data[x] << " ";
-  }
-  cout << endl;
 }
 
 void merge_sort(int data[], int low, int high) {
@@ -62,17 +50,10 @@ void merge_sort(int data[], int low, int high) {
 
 int main(int argc, char const *argv[]) {
 
-  // int data[] = {3, 4, 5, 11, 12, 8, 7, 6, 9, 2};
-  int data[] = {7, 3, 2, 4, 14, 8, 9, 12, 1, 5, 7, 13, 6, 10, 11};
-
+  int data[] = {3, 4, 5, 11, 12, 8, 7, 6, 5, 2};
   int len = (sizeof(data) / sizeof(int)) - 1;
 
   merge_sort(data, 0, len);
-
-  for (int i = 0; i <= len; ++i) {
-    cout << data[i] << ' ';
-  }
-  cout << endl;
 
   return 0;
 }
