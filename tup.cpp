@@ -4,10 +4,8 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-  int a = 5;
-  int b = 1;
-
-  cout << a / 2 << " " << b / 2 << endl;
+  int data[] = {10, 8, 6, 5, 3, 4, 2, 9};
+  int len = sizeof(data) / sizeof(data[0]);
 
   return 0;
 }

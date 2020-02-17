@@ -2,7 +2,8 @@
 
 using namespace std;
 
-void merge(int data[], int low, int mid, int high) {
+void merge(int data[], int low, int mid, int high)
+{
 
   int i = low;
   int j = mid + 1;
@@ -12,24 +13,31 @@ void merge(int data[], int low, int mid, int high) {
 
   int temp[len];
 
-  while ((i < (mid + 1)) && (j < high)) {
-    if (data[i] < data[j]) {
+  while ((i < (mid + 1)) && (j < high))
+  {
+    if (data[i] < data[j])
+    {
       temp[k++] = data[i++];
-    } else {
+    }
+    else
+    {
       temp[k++] = data[j++];
     }
   }
 
-  for (; j < bs;) {
+  for (; j < bs;)
+  {
     c[k++] = b[j++];
   }
 
-  for (; i < as;) {
+  for (; i < as;)
+  {
     c[k++] = a[i++];
   }
 }
 
-void merge_sort(int data[], int low, int high) {
+void merge_sort(int data[], int low, int high)
+{
 
   int mid = (low + high) / 2;
 
@@ -38,7 +46,8 @@ void merge_sort(int data[], int low, int high) {
 
   cout << "call " << low << " " << mid << " " << high << endl;
 
-  for (int i = low; i <= high; ++i) {
+  for (int i = low; i <= high; ++i)
+  {
     cout << data[i] << ' ';
   }
   cout << endl;
@@ -48,7 +57,8 @@ void merge_sort(int data[], int low, int high) {
   merge(data, low, mid, high);
 }
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char const *argv[])
+{
 
   int data[] = {3, 4, 5, 11, 12, 8, 7, 6, 5, 2};
   int len = (sizeof(data) / sizeof(int)) - 1;

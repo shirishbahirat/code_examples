@@ -2,7 +2,8 @@
 
 using namespace std;
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char const *argv[])
+{
 
   uint32_t a[] = {2, 5, 8, 9, 11};
   uint32_t b[] = {1, 3, 4, 7};
@@ -13,23 +14,30 @@ int main(int argc, char const *argv[]) {
 
   uint32_t i = 0, j = 0, k = 0;
 
-  while ((i < as) && (j < bs)) {
-    if (a[i] < b[j]) {
+  while ((i < as) && (j < bs))
+  {
+    if (a[i] < b[j])
+    {
       c[k++] = a[i++];
-    } else {
+    }
+    else
+    {
       c[k++] = b[j++];
     }
   }
 
-  for (; j < bs;) {
+  for (; j < bs;)
+  {
     c[k++] = b[j++];
   }
 
-  for (; i < as;) {
+  for (; i < as;)
+  {
     c[k++] = a[i++];
   }
 
-  for (uint32_t m = 0; m < cs; ++m) {
+  for (uint32_t m = 0; m < cs; ++m)
+  {
     cout << c[m] << " ";
   }
   cout << endl;

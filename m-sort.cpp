@@ -2,7 +2,8 @@
 
 using namespace std;
 
-void merge(int data[], int low, int mid, int high) {
+void merge(int data[], int low, int mid, int high)
+{
 
   int i = low;
   int j = mid + 1;
@@ -15,33 +16,41 @@ void merge(int data[], int low, int mid, int high) {
 
   int temp[len];
 
-  while ((i <= mid) && (j <= high)) {
-    if (data[i] < data[j]) {
+  while ((i <= mid) && (j <= high))
+  {
+    if (data[i] < data[j])
+    {
       temp[k++] = data[i++];
-    } else {
+    }
+    else
+    {
       temp[k++] = data[j++];
     }
   }
 
   cout << k << " " << j << " " << low << " " << high << endl;
 
-  for (; i <= mid;) {
+  for (; i <= mid;)
+  {
     temp[k++] = data[i++];
   }
 
-  for (; j <= high;) {
+  for (; j <= high;)
+  {
     temp[k++] = data[j++];
   }
 
   cout << "mdone ";
-  for (int x = low, y = 0; y < len; ++x, ++y) {
+  for (int x = low, y = 0; y < len; ++x, ++y)
+  {
     data[x] = temp[y];
     cout << data[x] << " ";
   }
   cout << endl;
 }
 
-void merge_sort(int data[], int low, int high) {
+void merge_sort(int data[], int low, int high)
+{
 
   int mid = (low + high) / 2;
 
@@ -50,7 +59,8 @@ void merge_sort(int data[], int low, int high) {
 
   cout << "call " << low << " " << mid << " " << high << endl;
 
-  for (int i = low; i <= high; ++i) {
+  for (int i = low; i <= high; ++i)
+  {
     cout << data[i] << ' ';
   }
   cout << endl;
@@ -60,7 +70,8 @@ void merge_sort(int data[], int low, int high) {
   merge(data, low, mid, high);
 }
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char const *argv[])
+{
 
   // int data[] = {3, 4, 5, 11, 12, 8, 7, 6, 9, 2};
   int data[] = {7, 3, 2, 4, 14, 8, 9, 12, 1, 5, 7, 13, 6, 10, 11};
@@ -69,7 +80,8 @@ int main(int argc, char const *argv[]) {
 
   merge_sort(data, 0, len);
 
-  for (int i = 0; i <= len; ++i) {
+  for (int i = 0; i <= len; ++i)
+  {
     cout << data[i] << ' ';
   }
   cout << endl;
