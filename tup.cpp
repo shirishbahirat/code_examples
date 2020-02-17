@@ -12,19 +12,30 @@ void swap(int data[], int x, int y)
 void trickle_down(int data[], int len)
 {
   int index = 0;
-  int left = 2 * index + 1;
-  int right = 2 * index + 2;
-  int parent;
+  int parent = 0;
+  bool taken = true;
+  while (taken)
+  {
+    int left = 2 * index + 1;
+    int right = 2 * index + 2;
 
-  if (data[left] > data[right])
-    parent = left;
-  else
-    parent = right;
+    taken = false;
 
-  if (data[index] < data[parent])
-    swap(data, index, parent);
+    if ((left <= len) && (right <= len))
+    {
+      if (data[left] > data[right])
+        parent = left;
+      else
+        parent = right;
 
-  index = parent;
+      if (data[index] < data[parent])
+      {
+        swap(data, index, parent);
+        index = parent;
+        taken = true;
+      }
+    }
+  }
 }
 
 void trickle_up(int data[], int index)
@@ -52,13 +63,17 @@ void heapify(int data[], int len)
 
 int main(int argc, char const *argv[])
 {
-  // int data[] = {6, 4, 8, 9, 3, 2, 10, 5};
-  int data[] = {4, 8, 9, 5, 3, 2, 6, 10};
+  int data[] = {6, 4, 8, 9, 3, 2, 10, 5};
   int len = sizeof(data) / sizeof(data[0]) - 1;
 
-  // heapify(data, len);
+  heapify(data, len);
 
-  trickle_down(data, len);
+  for (int i = len; i > 0; --i)
+  {
+    swap(data, 0, i);
+    trickle_down(data, i - 1);
+  }
+  swap(data, 0, 1);
 
   for (int i = 0; i <= len; ++i)
   {
