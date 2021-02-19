@@ -1,0 +1,51 @@
+#! /usr/local/Cellar/icarus-verilog/10.2_1/bin/vvp
+:ivl_version "10.2 (stable)" "(v10_2)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x7f81e5c03680 .scope module, "simple_tb" "simple_tb" 2 1;
+ .timescale 0 0;
+v0x7f81e5d05140_0 .var "A", 3 0;
+v0x7f81e5d051f0_0 .net "B", 3 0, L_0x7f81e5d05640;  1 drivers
+S_0x7f81e5c06720 .scope module, "s" "simple" 2 12, 3 1 0, S_0x7f81e5c03680;
+ .timescale 0 0;
+    .port_info 0 /INPUT 4 "A"
+    .port_info 1 /OUTPUT 4 "B"
+v0x7f81e5c068d0_0 .net "A", 3 0, v0x7f81e5d05140_0;  1 drivers
+v0x7f81e5d04d80_0 .net "B", 3 0, L_0x7f81e5d05640;  alias, 1 drivers
+v0x7f81e5d04e40_0 .net *"_s1", 0 0, L_0x7f81e5d052a0;  1 drivers
+v0x7f81e5d04ef0_0 .net *"_s3", 0 0, L_0x7f81e5d053a0;  1 drivers
+v0x7f81e5d04f80_0 .net *"_s5", 0 0, L_0x7f81e5d05440;  1 drivers
+v0x7f81e5d05060_0 .net *"_s7", 0 0, L_0x7f81e5d055a0;  1 drivers
+L_0x7f81e5d052a0 .part v0x7f81e5d05140_0, 0, 1;
+L_0x7f81e5d053a0 .part v0x7f81e5d05140_0, 2, 1;
+L_0x7f81e5d05440 .part v0x7f81e5d05140_0, 1, 1;
+L_0x7f81e5d055a0 .part v0x7f81e5d05140_0, 3, 1;
+L_0x7f81e5d05640 .concat [ 1 1 1 1], L_0x7f81e5d055a0, L_0x7f81e5d05440, L_0x7f81e5d053a0, L_0x7f81e5d052a0;
+    .scope S_0x7f81e5c03680;
+T_0 ;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x7f81e5d05140_0, 0, 4;
+    %end;
+    .thread T_0;
+    .scope S_0x7f81e5c03680;
+T_1 ;
+    %vpi_call 2 6 "$dumpfile", "simple.vcd" {0 0 0};
+    %vpi_call 2 7 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x7f81e5c06720 {0 0 0};
+    %vpi_call 2 8 "$monitor", "A is %b, B is %b.", v0x7f81e5d05140_0, v0x7f81e5d051f0_0 {0 0 0};
+    %delay 50, 0;
+    %pushi/vec4 12, 0, 4;
+    %store/vec4 v0x7f81e5d05140_0, 0, 4;
+    %delay 50, 0;
+    %vpi_call 2 10 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "simple_tb.v";
+    "simple.v";
